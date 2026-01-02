@@ -10,32 +10,48 @@ This document describes the system architecture, data flow, and pedagogical
 principles underpinning the design.
 
 ---
+# Hint Layer Architecture
+
+## 1. Introduction
+The Hint Layer is a modular AI-assisted scaffolding engine designed to support
+students learning to code. It provides structured, progressive hints without
+revealing full solutions, ensuring academic integrity and promoting deep
+learning.
+
+This document describes the system architecture, data flow, and pedagogical
+principles underpinning the design.
+
+---
+
 ## 2. High-Level Architecture
 
-The Hint Layer is designed as a modular pipeline that processes student code,
-detects misconceptions, constructs context-aware prompts, and generates
-progressive hints through a Large Language Model (LLM). Each component has a
-clear responsibility, ensuring transparency, academic integrity, and
-pedagogically aligned support.
+The Hint Layer processes student code, detects misconceptions, constructs
+context-aware prompts, and generates progressive hints through a Large Language
+Model (LLM). A parallel **Frustration Detection Layer** monitors behavioural
+signals to determine when a student may need human intervention.
 
 Student Code
      │
      ▼
-Error Detector ───► Prompt Builder ───► LLM Engine ───► Hint Formatter ───► Editor UI
+Error Detector ───► Prompt Builder ───► LLM Engine ───► Hint Formatter
+     │                                                      │
+     └──────────────► Frustration Detector ◄────────────────┘
+                                │
+                                ▼
+                         Mentor Notification
 
 At a high level, the system works as follows:
 
-- **Student Code** is captured directly from the editor.
-- The **Error Detector** performs static analysis to identify syntax, logic, or
-  conceptual issues.
-- The **Prompt Builder** constructs a structured, context-rich prompt for the
-  LLM, including the task, the student’s code, and the detected error.
-- The **LLM Engine** generates a pedagogically aligned hint rather than a full
-  solution.
-- The **Hint Formatter** applies progressive scaffolding rules to determine the
-  appropriate hint level.
-- The **Editor UI** displays the hint and allows the student to request deeper
-  levels of support.
+- At a high level:
+
+- **Student Code** is captured from the editor.  
+- The **Error Detector** performs static analysis.  
+- The **Prompt Builder** constructs a structured prompt.  
+- The **LLM Engine** generates a pedagogically aligned hint.  
+- The **Hint Formatter** applies progressive scaffolding rules.  
+- The **Frustration Detector** monitors behavioural indicators.  
+- If needed, a **mentor notification** is triggered.
+
 
 This architecture ensures that the AI supports learning without replacing the
 student’s own reasoning process.
@@ -44,31 +60,31 @@ student’s own reasoning process.
 ---
 
 ## 3. Components
-
 ### 3.1 Error Detector
 - Performs lightweight static analysis  
 - Identifies syntax, logic, and conceptual errors  
-- Classifies error type (e.g., IndexError, off-by-one, infinite loop)  
-- Outputs structured metadata for the Prompt Builder  
+- Classifies error type  
+- Outputs structured metadata  
+
+---
 
 ### 3.2 Prompt Builder
-Constructs a context-rich prompt for the LLM, including:
-- Task description  
-- Student code  
-- Error metadata  
-- Instruction to provide a hint, not a solution  
-- Guardrails to prevent over-helping  
-
-Example prompt structure:
+Constructs a context-rich prompt including:
+- task description  
+- student code  
+- error metadata  
+- scaffolding level  
+- academic integrity guardrails  
 
 ---
 
 ### 3.3 LLM Engine
 - Receives structured prompts  
-- Generates pedagogically aligned hints  
-- Uses system-level instructions to maintain academic integrity  
+- Generates hints aligned with scaffolding theory  
+- Avoids providing full solutions  
 
 ---
+
 
 ### 3.4 Progressive Hint Formatter
 Implements four levels of scaffolding:
@@ -96,7 +112,39 @@ Hints can be displayed via:
 
 ---
 
-## 4. Pedagogical Foundations
+## 4. Frustration Detection Layer
+
+The Frustration Detection Layer monitors behavioural indicators that suggest a
+student is struggling. It does not infer emotional state; instead, it uses
+objective signals such as:
+
+- repeated errors  
+- excessive hint requests  
+- long periods without progress  
+- oscillating code patterns  
+- increasing error severity  
+
+These signals are combined into a **frustration score**. When the score exceeds
+a threshold, the system triggers a **mentor intervention event**, allowing a
+human educator to provide timely support.
+
+This layer ensures that students receive help at the right moment, preventing
+disengagement and supporting mastery-based learning.
+
+### 4.1 Frustration Scoring Model
+
+The system computes a frustration score based on weighted behavioural indicators:
+
+frustration_score =
+    (hint_requests * 2) +
+    (time_stuck_minutes * 1.5) +
+    (repeated_errors * 3) +
+    (no_progress_events * 4)
+
+When the score exceeds a configurable threshold, the system triggers a mentor
+intervention event.
+
+## 5. Pedagogical Foundations
 The architecture is grounded in:
 - Vygotsky’s Zone of Proximal Development  
 - Scaffolding theory  
@@ -106,7 +154,7 @@ The architecture is grounded in:
 
 ---
 
-## 5. Future Extensions
+## 6. Future Extensions
 - Adaptive hint sequencing  
 - Teacher dashboards  
 - Misconception analytics  
@@ -115,9 +163,10 @@ The architecture is grounded in:
 
 ---
 
-## 6. Conclusion
+## 7. Conclusion
 This architecture represents a novel approach to AI-assisted learning that
 prioritises student thinking, academic integrity, and pedagogical rigour. It is
-designed to be modular, extensible, and suitable for integration into modern
-coding education environments.
+modular, extensible, and suitable for integration into modern coding education
+environments.
+
 

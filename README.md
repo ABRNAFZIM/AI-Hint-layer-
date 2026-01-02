@@ -1,4 +1,3 @@
-# AI-Hint-layer-
 # AI Scaffolding Hint Layer for Coding Education
 
 ## Overview
@@ -13,6 +12,7 @@ The Hint Layer integrates:
 - Error classification  
 - Context-aware prompt construction  
 - Multi-level progressive hinting  
+- Frustration detection and mentor escalation  
 - Guardrails to prevent over-helping  
 - Pedagogically grounded scaffolding (ZPD, mastery learning)
 
@@ -23,26 +23,50 @@ learning environments.
 ---
 
 ## Key Features
-- **Real-time misconception detection**  
-  Identifies syntax, logic, and conceptual errors before generating hints.
 
-- **Progressive Hinting Engine**  
-  Four levels of scaffolding:  
-  1. Metacognitive nudge  
-  2. Conceptual guidance  
-  3. Specific technical hint  
-  4. Worked example (non-solution)
+### Real-time Misconception Detection
+Identifies syntax, logic, and conceptual errors before generating hints.
 
-- **Static Analysis + LLM Hybrid Pipeline**  
-  Ensures accuracy, reduces hallucinations, and maintains academic integrity.
+### Progressive Hinting Engine
+Four levels of scaffolding:
+1. Metacognitive nudge  
+2. Conceptual guidance  
+3. Specific technical hint  
+4. Worked example (non-solution)
 
-- **Context-Aware Prompt Builder**  
-  Generates structured prompts for LLMs based on task, code, and error type.
+### Static Analysis + LLM Hybrid Pipeline
+Combines deterministic error detection with AI reasoning to ensure accuracy and reduce hallucinations.
 
-- **Editor Integration Ready**  
-  Designed to plug into browser-based or desktop IDEs.
+### Context-Aware Prompt Builder
+Constructs structured prompts based on:
+- task description  
+- student code  
+- error type  
+- scaffolding level  
+- academic integrity guardrails  
+
+### Frustration Detection Layer
+Monitors behavioural indicators such as:
+- repeated errors  
+- excessive hint requests  
+- long periods without progress  
+- oscillating code patterns  
+
+Triggers a **mentor intervention event** when a student is stuck.
+
+### Academic Integrity by Design
+The system is engineered to:
+- avoid giving full solutions  
+- encourage critical thinking  
+- maintain student ownership of work  
+
+### Editor Integration Ready
+Designed to plug into:
+- browser IDEs  
+- VS Code  
+- LMS-based editors  
+- custom learning platforms  
 
 ---
 
 ## Repository Structure
-See the folder layout below for details on architecture, prototypes, and documentation.

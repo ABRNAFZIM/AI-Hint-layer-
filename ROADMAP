@@ -1,0 +1,70 @@
+# Project Roadmap
+
+This roadmap outlines the planned evolution of the AI Scaffolding Hint Layer. It is intentionally ambitious, reflecting the long‑term potential of responsible AI in education.
+
+---
+
+## Phase 1 — Foundation (Current)
+
+- High‑level architecture design
+- Progressive hinting model (Levels 1–4)
+- Frustration Detection Layer (v1)
+- Mentor Escalation Engine (v1)
+- Pseudocode prototypes
+- Documentation and diagrams
+
+---
+
+## Phase 2 — Early Prototype
+
+- Implement basic static analysis
+- Integrate LLM prompt builder
+- Build a minimal hint engine
+- Add frustration scoring logic
+- Create a mentor notification mock API
+- Build example student scenarios
+
+---
+
+##  Phase 3 — Responsible AI Enhancements
+
+- Improve frustration detection using:
+  - keystroke patterns
+  - time‑on‑task modelling
+  - repeated error clustering
+- Add emotional safety messages
+- Add adaptive hint throttling
+- Add academic integrity guardrails
+
+---
+
+##  Phase 4 — Functional Prototype
+
+- Browser‑based demo editor
+- Real‑time hint panel
+- Mentor dashboard (mock)
+- Logging and analytics layer
+- User testing with sample tasks
+
+---
+
+## Phase 5 — Scaling & Integration
+
+- LMS integration (Moodle, Canvas)
+- VS Code extension prototype
+- Multilingual hinting
+- Curriculum‑aware scaffolding
+- Personalised learning profiles
+
+---
+
+##  Phase 6 — Research & Publication
+
+- Publish whitepaper on responsible AI scaffolding
+- Release open‑source reference implementation
+- Conduct pilot studies with educators
+- Present findings at EdTech and AI conferences
+
+---
+
+This roadmap will evolve as the project grows. Contributions and collaboration are welcome.

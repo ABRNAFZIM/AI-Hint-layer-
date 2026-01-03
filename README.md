@@ -4,7 +4,7 @@
 
 ---
 
-## *Overview**
+## **Overview**
 
 This repository documents the design and early prototype work for an AI‑powered **Hint Layer** that provides structured, progressive scaffolding for students learning to code. Unlike traditional AI tutors that give direct answers, this system is engineered to promote:
 
